@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="/static/css/pure-min.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/style.css" rel="stylesheet" type="text/css" />
+    {% block title %}
+        <title>你好。世界</title>
+    {% endblock %}
+    <link rel="top" title="回到顶部" href="#top" />
+</head>
+<body>
+    <div class="document">
+        <div class="documentwrapper">
+            <div class="pure-g main">
+                <div class="pure-u-6-24">
+                    <aside class="sidebar">
+                    {% block sidebaer %}
+                        <div class="box">
+                            <header>
+                                <h3>
+                                    关于我
+                                </h3>
+                            </header>
+                            <sections>
+                                <img src="http://ww4.sinaimg.cn/large/742dd65cjw1f3b995yepsj203p03j3yf.jpg" width="64" height="64" />
+                                <p>
+                                    Flask 是一个 Python 实现的 Web 开发微框架。你正在阅读的是开发版本的文档。
+                                </p>
+                                <p>关于我，关于你，关于他</p>
+                                <p>为什么没有头像？因为懒；</p>
+                                <p>好奇编程语言（Rust, Go , Lua, Perl, Python）；</p>
+                                <p>计划很多小项目，准备很多轮子造；</p>
+                            </sections>
+                        </div>
+                        <div class="box">
+                            <header>
+                                <h3>
+                                    开发工具
+                                </h3>
+                            </header>
+                            <sections>
+                                <ul>
+                                    <li>
+                                        <a href="">
+                                           sublime text 3
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="">
+                                           Visual Studio Code
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="">
+                                           eclipse
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="">
+                                           babun
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="">
+                                          IntelliJ IDEA
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="">
+                                         Navicat Premium
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="">
+                                         其他
+                                        </a>
+                                    </li>
+                                </ul>
+                            </sections>
+                        </div>
+                    {% endblock %}
+                    </aside>
+                </div>
+                <div class="pure-u-18-24">
+                    <div class="body">
+                        {% block body %}
+                        {% endblock %}
+                    </div>
+                </div>
+            </div>
+            {% block footer %}
+            <footer>
+                Copyright © 2016 - tody - Powered by utf-8.live
+            </footer>
+            {% endblock %}
+        </div>
+    </div>
+    <a href="#top" class="gotop">Top</a>
+</body>
+</html>

@@ -1,0 +1,48 @@
+{% extends "components/base.html" %}
+{% block title %}
+<title>
+    {{post['title']}}
+</title>
+{% endblock %}
+{% block sidebaer %}
+        <ul class="breadcrumb">
+            <li>
+                <a href="/">首页</a>
+            </li>
+            <li>
+                <a href="/post/{{post['id'] - 1}}">下一篇</a>
+            </li>
+        </ul>
+                        <div class="box">
+                            <header>
+                                <h3>
+                                    关于我
+                                </h3>
+                            </header>
+                            <sections>
+                                <img src="/static/img/logo.png" width="72" height="72" />
+                                <p>
+                                    Flask 是一个 Python 实现的 Web 开发微框架。你正在阅读的是开发版本的文档。
+                                </p>
+                                <p>关于我，关于你，关于他</p>
+                                <p>为什么没有头像？因为懒；</p>
+                                <p>好奇编程语言（Rust, Go , Lua, Perl, Python）；</p>
+                                <p>计划很多小项目，准备很多轮子造；</p>
+                            </sections>
+                        </div>
+        <div class="box">
+            <heder>
+                <h4>{{post['title']}}</h4>
+            </heder>
+            <sections>
+                发布于:
+                <time datetime="{{post['created']}}">{{post['created'].strftime('%Y-%m-%d')}}</time>
+            </sections>
+        </div>
+{% endblock %}
+{% block body %}
+    <h1 class="title">{{post['title']}}</h1>
+        {% autoescape false %}
+        {{post['content']}}
+        {% endautoescape %}
+{% endblock %}

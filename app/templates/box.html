@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Boxs</title>
+    <link href="/static/css/pure-min.css" rel="stylesheet" type="text/css" />
+    <style>
+      body {
+        padding: 0;
+        margin: 0;
+        background-color: #f9f9f7;
+      }
+      .wrapper{
+        max-width: 680px;
+        padding: 10px;
+        margin:auto;
+      }
+      .boxlist{
+        margin:0;
+        padding:0;
+        list-style:none;
+      }
+      .boxlist li {
+        background-color:#ff9900;
+        -moz-box-shadow: 4px 4px 2px #DAD9D9; /* 老的 Firefox */
+        box-shadow: 4px 4px 2px #DAD9D9;
+        border-radius:2px;
+        margin-bottom:10px;
+        width:100%;
+        background-color:#EEEEEE;
+        padding:10px;
+        line-height:1;
+      }
+      .boxlist li header {
+        display:inline;
+        background-color:#FE9700;
+        padding:4px;
+        border-radius:2px;
+        font-size:14px;
+      }
+      .boxlist li .order {
+        background-color:#009788;
+        padding:4px;
+        font-size:14px;
+        border-radius:20%;
+      }
+      .boxlist li .arrow {
+        margin-left:5px;
+        font-size:17px;
+        float:right;
+        padding-left:4px;
+        padding-right:4px;
+      }
+      .boxlist li .arrow:hover{
+        cursor:pointer;
+        background-color:#CECECE;
+      }
+      .boxlist li .edit,.boxlist li .edit textarea{
+        margin-top:15px;
+      }
+      .boxlist li .edit textarea {
+        overflow-x:visible;overflow-y:visible;
+      }
+      .boxlist li .edit input[type="submit"] {
+        margin-top:10px;
+      }
+      .hidden {
+        display:none;
+      }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+            <h1>Box List</h1>
+           <ul class="boxlist">
+               <li>
+                   <span class="order">0</span>
+                   <header>PATH</header>
+                   Box Name
+                   <span class="arrow" onclick="showOrHidden(this)">
+                       新建
+                   </span>
+                   <span></span>
+                   <form class="pure-form edit hidden" method="POST" action="/box">
+                       <input type="text" name="type" class="pure-input-1-4" placeholder="目录">
+                       <input type="text" name="name" class="pure-input-1-4" placeholder="名称">
+                       <input type="text" name="order" class="pure-input-2-4" placeholder="顺序">
+                       <textarea class="pure-input-1" name="content">Markdown</textarea>
+                       <input type="submit" value="提交" class="pure-button pure-button-primary">
+                   </form>
+               </li>
+               {% for b in boxs %}
+               <li>
+                   <span class="order">{{b['order']}}</span>
+                   <header>{{b['type']}}</header>
+                   {{b['name']}}
+                   <span class="arrow" onclick="showOrHidden(this)">
+                       >
+                   </span>
+                   <a class="arrow" href="/box/del/{{b['id']}}">del</a>
+                   <form class="pure-form edit hidden" method="POST" action="/box/update">
+                       <input type="hidden" name="id" value="{{b['id']}}">
+                       <input type="text" name="type" class="pure-input-1-4" value="{{b['type']}}">
+                       <input type="text" name="name" class="pure-input-1-4" value="{{b['name']}}">
+                       <input type="text" name="order" class="pure-input-2-4" value="{{b['order']}}">
+                       <textarea class="pure-input-1" name="content">{{b['content']}}</textarea>
+                       <input type="submit" value="submit" class="pure-button pure-button-primary">
+                   </form>
+               </li>
+                {% endfor %}
+           </ul>
+    </div>
+    <script>
+        function showOrHidden(me) {
+            var f = me.parentNode.childNodes[9]
+            if (f.className.indexOf("hidden") > 0) {
+                f.className = "pure-form edit"
+            } else {
+                f.className = "pure-form edit hidden"
+            }
+        }
+    </script>
+</body>
+</html>

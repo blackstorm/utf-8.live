@@ -1,0 +1,43 @@
+{% extends "components/base.html" %}
+{% block title %}
+<title>你好.世界</title>
+{% endblock %}
+{% block sidebaer %}
+    {% for b in boxs %}
+    <div class="box">
+        <header>
+            <h3>
+                {{b['name']}}
+            </h3>
+        </header>
+        <sections>
+            {% autoescape false %}
+            {{b['content']}}
+            {% endautoescape %}
+        </sections>
+    </div>
+    {% endfor %}
+{% endblock %}
+{% block body %}
+    {% for p in posts %}
+    <article class="i-a">
+        <h3 class="i-t">
+            <a href="/post/{{p['id']}}">
+                {{p['title']}}
+            </a>
+        </h3>
+    </article>
+    {% endfor %}
+    <div class="pagenav">
+        <span>
+            共{{total}}篇文章 当前第{{page}}页
+            {% if page == 1 %}
+                <a href="/page/{{page + 1}}">第{{page + 1}}页</a>
+            {% endif %}
+            {% if page > 2 or page == 2 %}
+                <a href="/page/{{page - 1}}">第{{page - 1}}页</a>
+                <a href="/page/{{page + 1}}">第{{page + 1}}页</a>
+            {% endif %}
+        </span>
+    </div>
+{% endblock %}

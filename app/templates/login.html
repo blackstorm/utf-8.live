@@ -1,0 +1,29 @@
+{% extends "components/base.html" %}
+{% block title %}
+<title>
+    登录
+</title>
+{% endblock %}
+{% block body %}
+    {% if message is defined %}
+        <small class="messgae">
+            {{message}}
+        </small>
+    {% endif %}
+    <h1>登录</h1>
+    <form class="pure-form pure-form-aligned" action="/login" method="POST">
+        <fieldset>
+            <div class="pure-control-group">
+                <label for="name">Username</label>
+                <input name="name" type="text" placeholder="Username">
+            </div>
+            <div class="pure-control-group">
+                <label for="password">Password</label>
+                <input name="password" type="password" placeholder="Password">
+            </div>
+            <div class="pure-controls">
+                <button type="submit" class="pure-button pure-button-primary">Submit</button>
+            </div>
+        </fieldset>
+    </form>
+{% endblock %}
